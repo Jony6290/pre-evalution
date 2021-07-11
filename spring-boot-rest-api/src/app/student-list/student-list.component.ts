@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Student } from '../student';
 import { StudentService } from '../student.service';
+import { MatDialog } from '@angular/material/dialog'
+import { UpdateStudentComponent } from '../update-student/update-student.component';
 
 @Component({
   selector: 'app-student-list',
@@ -27,6 +29,21 @@ export class StudentListComponent implements OnInit {
 
   updateStudent(id: number){
     this.router.navigate(['/update-student', id])
+  }
+
+  deleteStudent(id: number){
+    this.studentService.deleteStudent(id).subscribe(data => {
+      console.log(data);
+      this.getStudents();
+    })
+  }
+
+  studentDetails(id: number){
+    this.router.navigate(['/student-details', id])
+  }
+  
+  openDialog(){
+    console.log("open dialog called");
   }
 
 }

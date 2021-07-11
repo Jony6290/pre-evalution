@@ -8,21 +8,32 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateStudentComponent } from './create-student/create-student.component'
 import { FormsModule } from '@angular/forms';
 import { UpdateStudentComponent } from './update-student/update-student.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StudentDetailsComponent } from './student-details/student-details.component'
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentListComponent,
     CreateStudentComponent,
-    UpdateStudentComponent
+    UpdateStudentComponent,
+    StudentDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [UpdateStudentComponent]
 })
 export class AppModule { }

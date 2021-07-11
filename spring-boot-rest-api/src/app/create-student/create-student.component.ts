@@ -1,5 +1,5 @@
-
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Student } from '../student';
 import { StudentService } from '../student.service';
@@ -21,6 +21,7 @@ export class CreateStudentComponent implements OnInit {
   saveStudent(){
     this.studentService.saveStudent(this.student).subscribe(data => {
       console.log(data);
+      this.gotoStudentList();
     },
     error => console.log(error));
   }
@@ -29,10 +30,22 @@ export class CreateStudentComponent implements OnInit {
     this.router.navigate(['/students']);
   }
 
-  onSubmit(){
+  onSubmit(stuForm: NgForm): void{
 
     this.saveStudent();
-    this.gotoStudentList();
+    
   }
+
+  // urllink:String = "assets/images/1.jpg"
+  
+  // selectFiles(event: { target: { files: Blob[]; }; }){
+  //    if(event.target.files){
+  //      var reader = new FileReader()
+  //      reader.readAsDataURL(event.target.files[0])
+  //      reader.onload = (event:any) =>{
+  //        this.urllink = event.target.result
+  //      }
+  //    }
+  // }
 
 }

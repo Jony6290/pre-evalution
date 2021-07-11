@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -18,7 +22,6 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     //get all student
-//    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/students")
     public List<Student> getAllStudent()
     {
@@ -26,9 +29,8 @@ public class StudentController {
     }
 
     //create student rest api
-//    @CrossOrigin
     @PostMapping("/students")
-    public Student createStudent(@RequestBody Student student)
+    public Student createStudent(@Valid @RequestBody Student student)
     {
         return studentRepository.save(student);
     }
@@ -54,5 +56,17 @@ public class StudentController {
         Student updatedStudent = studentRepository.save(student);
 
         return  ResponseEntity.ok(updatedStudent);
+    }
+
+    //delete student by id rest api
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteStudent(@PathVariable Long id){
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not exists with this id: " + id));
+
+        studentRepository.delete(student);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
