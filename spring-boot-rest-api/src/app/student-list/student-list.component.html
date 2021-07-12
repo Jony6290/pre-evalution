@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let student of students" (dblclick)="studentDetails(student.id)">
+        <tr *ngFor = "let student of students | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalLength }" (dblclick)="studentDetails(student.id)">
             <td><img  src="assets/pic.png" alt="image" style="height: 40px; width: 40px;"/></td>
             <td> {{student.studentId}} </td>
             <td> {{student.firstName + " " + student.lastName}}</td>
@@ -27,4 +27,5 @@
             </td>
         </tr>
     </tbody>
+    <pagination-controls (pageChange)="page= $event"></pagination-controls>
 </table>

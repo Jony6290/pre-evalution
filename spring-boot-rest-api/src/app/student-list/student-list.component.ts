@@ -13,6 +13,8 @@ import { UpdateStudentComponent } from '../update-student/update-student.compone
 export class StudentListComponent implements OnInit {
 
   students!: Student[];
+  totalLength: any;
+  page: number = 1;
 
   constructor(private studentService: StudentService, private router: Router) {}
 
@@ -24,6 +26,7 @@ export class StudentListComponent implements OnInit {
   private getStudents(){
     this.studentService.getStudentList().subscribe(data => {
       this.students = data;
+      this.totalLength = data.length;
     })
   }
 
