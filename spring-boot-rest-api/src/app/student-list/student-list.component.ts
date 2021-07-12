@@ -31,11 +31,13 @@ export class StudentListComponent implements OnInit {
     this.router.navigate(['/update-student', id])
   }
 
-  deleteStudent(id: number){
+  deleteStudent(id: number, name: string){
+    if(confirm("Are you sure to delete "+name)) {
     this.studentService.deleteStudent(id).subscribe(data => {
       console.log(data);
       this.getStudents();
     })
+  }
   }
 
   studentDetails(id: number){
