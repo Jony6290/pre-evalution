@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from '../student';
 import { StudentService } from '../student.service';
@@ -12,6 +13,10 @@ export class UpdateStudentComponent implements OnInit {
 
   id!: number;
   student: Student = new Student();
+  date=new Date();
+  isInvalid!: Boolean;
+  gender: string = 'male';
+  age!: number;
 
   constructor(private studentService: StudentService, private route: ActivatedRoute,
     private router: Router) { }
@@ -21,15 +26,20 @@ export class UpdateStudentComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
 
     this.studentService.getStudentById(this.id).subscribe(data => {
-      console.log(data)
       this.student = data;
     }, error => console.log(error));
   }
 
-  onUpdate(){
+  onSubmit(stuForm: NgForm): void {
+    console.log(this.date.getFullYear() - Number((String(this.student.dateOfBirth)).substr(0,4)));
+    if (stuForm.valid) {
+      this.student.age = this.date.getFullYear() - Number((String(this.student.dateOfBirth)).substr(0,4));
+      this.updateStudent();
+    }else{
+      alert("Please fill all required fields up!");
+      this.isInvalid = true;
+    }
 
-    this.updateStudent();
-    
   }
 
   updateStudent(){

@@ -11,33 +11,41 @@ import { StudentService } from '../student.service';
 })
 export class CreateStudentComponent implements OnInit {
 
+  date=new Date();
   student: Student = new Student();
+  isInvalid!: Boolean;
+  gender: string = 'male';
+  dob!: Date;
 
   constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  saveStudent(){
+  saveStudent() {
     this.studentService.saveStudent(this.student).subscribe(data => {
       console.log(data);
       this.gotoStudentList();
     },
-    error => console.log(error));
+      error => console.log(error));
   }
 
-  gotoStudentList(){
+  gotoStudentList() {
     this.router.navigate(['/students']);
   }
 
-  onSubmit(stuForm: NgForm): void{
+  onSubmit(stuForm: NgForm): void {
+    if (stuForm.valid) {
+      this.saveStudent();
+    }else{
+      alert("Please fill all required fields up!");
+      this.isInvalid = true;
+    }
 
-    this.saveStudent();
-    
   }
 
   // urllink:String = "assets/images/1.jpg"
-  
+
   // selectFiles(event: { target: { files: Blob[]; }; }){
   //    if(event.target.files){
   //      var reader = new FileReader()

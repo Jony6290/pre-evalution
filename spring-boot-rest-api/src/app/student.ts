@@ -13,7 +13,10 @@ export class Student {
     gender!: string;
     nid!: number;
     occupation!: string;
-    address!: string;
+    street!: string;
+    city!: string;
+    country!: string;
+    zipCode?: number;
     contactNo!: number;
     emailId!: EmailValidator;
     photo!: string;

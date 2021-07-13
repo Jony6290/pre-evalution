@@ -50,8 +50,17 @@ public class Student {
     @Column(name = "occupation")
     private String occupation;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "zipCode")
+    private String zipCode;
 
     @Column(name = "contact_no ")
     private String contactNo;
@@ -74,7 +83,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(long id, String regId, String institutionId, String studentId, String firstName, String lastName, String regDate, String dateOfBirth, String age, String gender, String nid, String occupation, String address, String contactNo, String emailId, String photo, String createdOn, String createdBy, String academicQualifications) {
+    public Student(long id, String regId, String institutionId, String studentId, String firstName, String lastName, String regDate, String dateOfBirth, String age, String gender, String nid, String occupation, String street, String city, String country, String zipCode, String contactNo, String emailId, String photo, String createdOn, String createdBy, String academicQualifications) {
         this.id = id;
         this.regId = regId;
         this.institutionId = institutionId;
@@ -87,7 +96,10 @@ public class Student {
         this.gender = gender;
         this.nid = nid;
         this.occupation = occupation;
-        this.address = address;
+        this.street = street;
+        this.city = city;
+        this.country = country;
+        this.zipCode = zipCode;
         this.contactNo = contactNo;
         this.emailId = emailId;
         this.photo = photo;
@@ -192,12 +204,36 @@ public class Student {
         this.occupation = occupation;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getContactNo() {

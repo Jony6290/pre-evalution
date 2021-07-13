@@ -2,61 +2,77 @@
 <form class="form-inline" #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
     <div class="card" style="margin-top: 20px;">
         <div class="card-header">
-            <h3>Registration</h3>
+            <h3>Create Student</h3>
         </div>
         <div class="card-body">
 
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group col-sm">
-                        <label style="padding: 10px; padding-left: 0px;">Registration Id</label>
-                        <input type="text" class="form-control" id="regId" [(ngModel)]="student.regId" name="regId"
-                            #firstNameControl="ngModel">
+                    <div class="form-group col-sm"
+                        [class.has-error]="regIdControl.invalid && regIdControl.touched || (regIdControl.invalid && isInvalid)">
+                        <label for="regId" class="control-label">Registration Id</label>
+                        <input required type="text" class="form-control" id="regId" name="regId"
+                            [(ngModel)]="student.regId" #regIdControl="ngModel"
+                            [class.border-danger]="regIdControl.invalid && regIdControl.touched || (regIdControl.invalid && isInvalid)">
                     </div>
-                    <div class="form-group col-sm">
-                        <label style="padding: 10px;">Institution Id</label>
-                        <input type="number" class="form-control" id="institutionId" [(ngModel)]="student.institutionId"
-                            name="institutionId">
+
+                    <div class="form-group col-sm"
+                        [class.has-error]="(institutionIdControl.invalid && institutionIdControl.touched) || (institutionIdControl.invalid && isInvalid)">
+                        <label for="institutionId" class="control-label">Institution Id</label>
+                        <input required type="number" class="form-control" id="institutionId" name="institutionId"
+                            [(ngModel)]="student.institutionId" #institutionIdControl="ngModel"
+                            [class.border-danger]="(institutionIdControl.invalid && institutionIdControl.touched) || (institutionIdControl.invalid && isInvalid)">
                     </div>
-                    <div class="form-group col-sm">
-                        <label style="padding: 10px;">Student Id</label>
-                        <input type="text" class="form-control" id="studentId" [(ngModel)]="student.studentId"
-                            name="studentId">
+                    <div class="form-group col-sm"
+                        [class.has-error]="(studentIdControl.invalid && studentIdControl.touched) || (studentIdControl.invalid && isInvalid)">
+                        <label for="studentId" class="control-label">Student Id</label>
+                        <input required type="text" class="form-control" id="studentId" [(ngModel)]="student.studentId"
+                            name="studentId" #studentIdControl="ngModel"
+                            [class.border-danger]="(studentIdControl.invalid && studentIdControl.touched) || (studentIdControl.invalid && isInvalid)">
                     </div>
                 </div>
             </div>
 
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group col-sm" [class.has-error]="firstNameControl.invalid">
-                        <label for="firstName" class="contro-lebel">First Name</label>
-                        <input type="text" class="form-control" id="firstName" [(ngModel)]="student.firstName"
-                            name="firstName" #firstNameControl="ngModel">
-                        <span class="help-block" *ngIf="firstNameControl.invalid">First name is required</span>
+                    <div class="form-group col-sm"
+                        [class.has-error]="(firstNameControl.invalid && firstNameControl.touched) || (firstNameControl.invalid && isInvalid)">
+                        <label for="firstName" class="control-label">First Name</label>
+                        <input required type="text" class="form-control" id="firstName" [(ngModel)]="student.firstName"
+                            name="firstName" #firstNameControl="ngModel"
+                            [class.border-danger]="(firstNameControl.invalid && firstNameControl.touched) || (firstNameControl.invalid && isInvalid)">
                     </div>
 
-                    <div class="form-group col-sm">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" id="lastName" [(ngModel)]="student.lastName"
-                            name="lastName">
+                    <div class="form-group col-sm"
+                        [class.has-error]="(lastNameControl.invalid && lastNameControl.touched) || (lastNameControl.invalid && isInvalid)">
+                        <label for="lastName" class="control-label">Last Name</label>
+                        <input required type="text" class="form-control" id="lastName" [(ngModel)]="student.lastName"
+                            name="lastName" #lastNameControl="ngModel"
+                            [class.border-danger]="(lastNameControl.invalid && lastNameControl.touched) || (lastNameControl.invalid && isInvalid)">
                     </div>
                 </div>
             </div>
 
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group col-sm">
-                        <label>Registration Date</label>
-                        <input type="date" class="form-control" id="regDate" [(ngModel)]="student.regDate" name="regDate">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(regDateControl.invalid && regDateControl.touched) || (regDateControl.invalid && isInvalid)">
+                        <label for="regDate" class="control-label">Registration Date</label>
+                        <input required type="date" class="form-control" id="regDate" [(ngModel)]="student.regDate"
+                            name="regDate" #regDateControl="ngModel" max="{{date | date:'yyyy-MM-dd'}}"
+                            [class.border-danger]="(regDateControl.invalid && regDateControl.touched) || (regDateControl.invalid && isInvalid)">
                     </div>
-                    <div class="form-group col-sm">
-                        <label>Date of Birth</label>
-                        <input type="date" class="form-control" id="dateOfBirth" [(ngModel)]="student.dateOfBirth"
-                            name="dateOfBirth">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(dateOfBirthControl.invalid && dateOfBirthControl.touched) || (dateOfBirthControl.invalid && isInvalid)">
+                        <label for="dateOfBirth" class="control-label">Date of Birth</label>
+                        <input required type="date" class="form-control" id="dateOfBirth" max="{{date | date:'yyyy-MM-dd'}}"
+                            [(ngModel)]="student.dateOfBirth" name="dateOfBirth" #dateOfBirthControl="ngModel"
+                            [class.border-danger]="(dateOfBirthControl.invalid && dateOfBirthControl.touched) || (dateOfBirthControl.invalid && isInvalid)">
                     </div>
                     <div class="form-group col-sm">
                         <label>Age</label>
-                        <input type="text" class="form-control" id="age" [(ngModel)]="student.age" name="age">            
+                        <input type="text" class="form-control" id="age" {{(date.getFullYear() - dateOfBirthControl.value.toString().substring(0, 4))}}="student.age" name="age" disabled
+                        placeholder="{{(date.getFullYear() - dateOfBirthControl.value.toString().substring(0, 4))}} years">
                     </div>
                 </div>
             </div>
@@ -64,7 +80,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="form-group col-sm">
-                        <label>Gender</label>
+                        <label for="gender" class="control-label">Gender</label>
                         <div class="form-control">
                             <label class="radio-inline">
                                 <input type="radio" value="male" name="gender" [(ngModel)]="student.gender">
@@ -76,68 +92,130 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group col-sm">
-                        <label>NID no.</label>
-                        <input type="number" class="form-control" id="nid" [(ngModel)]="student.nid" name="nid">            
+
+                    <div class="form-group col-sm"
+                        [class.has-error]="(nidControl.invalid && nidControl.touched) || (nidControl.invalid && isInvalid)">
+                        <label for="nid" class="control-label">NID no.</label>
+                        <input required type="number" class="form-control" id="nid" [(ngModel)]="student.nid" name="nid"
+                            #nidControl="ngModel"
+                            [class.border-danger]="(nidControl.invalid && nidControl.touched) || (nidControl.invalid && isInvalid)">
                     </div>
-                    <div class="form-group col-sm">
-                        <label>Occupation</label>
-                        <input type="text" class="form-control" id="occupation" [(ngModel)]="student.occupation" name="occupation">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(occupationControl.invalid && occupationControl.touched) || (occupationControl.invalid && isInvalid)">
+                        <label for="occupation" class="control-label">Occupation</label>
+                        <input required type="text" class="form-control" id="occupation"
+                            [(ngModel)]="student.occupation" name="occupation" #occupationControl="ngModel"
+                            [class.border-danger]="(occupationControl.invalid && occupationControl.touched) || (occupationControl.invalid && isInvalid)">
                     </div>
                 </div>
             </div>
 
-            <div class="form-group card-body">
-                <label>Address</label>
-                <input type="text" class="form-control" id="address" [(ngModel)]="student.address" name="address">
-            </div>
+            <div class="card-body">
+                <div class="card-header">Address</div>
+                <div class="row">
+                    <div class="form-group col-sm-4" style="padding-top: 10px;"
+                        [class.has-error]="(streetControl.invalid && streetControl.touched) || (streetControl.invalid && isInvalid)">
+                        <input required type="text" class="form-control" id="street" [(ngModel)]="student.street"
+                            name="street" #streetControl="ngModel" placeholder="Street"
+                            [class.border-danger]="(streetControl.invalid && streetControl.touched) || (streetControl.invalid && isInvalid)">
+                    </div>
+                    <div class="form-group col-sm-3" style="padding-top: 10px;"
+                        [class.has-error]="(cityControl.invalid && cityControl.touched) || (cityControl.invalid && isInvalid)">
+                        <input required type="text" class="form-control" id="city" [(ngModel)]="student.city"
+                            name="city" #cityControl="ngModel" placeholder="City"
+                            [class.border-danger]="(cityControl.invalid && cityControl.touched) || (cityControl.invalid && isInvalid)">
+                    </div>
+                    <div class="form-group col-sm-3" style="padding-top: 10px;"
+                        [class.has-error]="(countryControl.invalid && countryControl.touched) || (countryControl.invalid && isInvalid)">
+                        <input required type="text" class="form-control" id="country" [(ngModel)]="student.country"
+                            name="country" #countryControl="ngModel" placeholder="County"
+                            [class.border-danger]="(countryControl.invalid && countryControl.touched) || (countryControl.invalid && isInvalid)">
+                    </div>
+                    <div class="form-group col-sm-2" style="padding-top: 10px;">
+                        <input type="number" class="form-control" id="zipCode" [(ngModel)]="student.zipCode"
+                            name="zipCode" #firstNameControl="ngModel" placeholder="Zip code">
+                    </div>
 
+                </div>
+
+
+            </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group col-sm">
-                        <label>Contact No.</label>
-                        <input type="number" class="form-control" id="contactNo" [(ngModel)]="student.contactNo" name="contactNo">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(contactNoControl.invalid && contactNoControl.touched) || (contactNoControl.invalid && isInvalid)">
+                        <label for="contactNo" class="control-label">Contact No.</label>
+                        <input required type="number" class="form-control" id="contactNo"
+                            [(ngModel)]="student.contactNo" #contactNoControl="ngModel" name="contactNo"
+                            [class.border-danger]="(contactNoControl.invalid && contactNoControl.touched) || (contactNoControl.invalid && isInvalid)">
                     </div>
-                    <div class="form-group col-sm">
-                        <label>Email Id</label>
-                        <input type="email" class="form-control" id="emailId" [(ngModel)]="student.emailId" name="emailId">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(emailIdControl.invalid && emailIdControl.touched) || (emailIdControl.invalid && isInvalid)">
+                        <label for="emailId" class="control-label">Email Id</label>
+                        <input required type="email" class="form-control" id="emailId" [(ngModel)]="student.emailId"
+                            #emailIdControl="ngModel" name="emailId"
+                            [class.border-danger]="(emailIdControl.invalid && emailIdControl.touched) || (emailIdControl.invalid && isInvalid)">
                     </div>
-                    <!-- <div class="form-group col-sm">
+                </div>
+                <!-- <div class="form-group col-sm">
                         <label for="photo">Photo</label>
                         <img src="rounded-circle" [src]="urllink" >
                         <input type="file" class="form-control-file" id="photo" (change)="selectFiles($event)">
                     </div> -->
-                </div>
             </div>
 
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group col-sm">
-                        <label>Creation Date</label>
-                        <input type="email" class="form-control" id="createdOn" [(ngModel)]="student.createdOn" name="createdOn">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(createdOnControl.invalid && createdOnControl.touched) || (createdOnControl.invalid && isInvalid)">
+                        <label for="createdOn" class="control-label">Creation Date</label>
+                        <input required type="date" class="form-control" id="createdOn" [(ngModel)]="student.createdOn"
+                            #createdOnControl="ngModel" name="createdOn" max="{{date | date:'yyyy-MM-dd'}}"
+                            [class.border-danger]="(createdOnControl.invalid && createdOnControl.touched) || (createdOnControl.invalid && isInvalid)">
                     </div>
-                    <div class="form-group col-sm">
-                        <label>Created By</label>
-                        <input type="email" class="form-control" id="createdBy" [(ngModel)]="student.createdBy" name="createdBy">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(createdByControl.invalid && createdByControl.touched) || (createdByControl.invalid && isInvalid)">
+                        <label for="emcreatedByailId" class="control-label">Created By</label>
+                        <input required type="text" class="form-control" id="createdBy" [(ngModel)]="student.createdBy"
+                            #createdByControl="ngModel" name="createdBy"
+                            [class.border-danger]="(createdByControl.invalid && createdByControl.touched) || (createdByControl.invalid && isInvalid)">
                     </div>
-                    <div class="form-group col-sm">
-                        <label>Academic Qualification</label>
-                        <input type="email" class="form-control" id="academicQualifications"
-                            [(ngModel)]="student.academicQualifications" name="academicQualifications">            
+                    <div class="form-group col-sm"
+                        [class.has-error]="(academicQualificationsControl.invalid && academicQualificationsControl.touched) || (academicQualificationsControl.invalid && isInvalid)">
+                        <label for="academicQualifications" class="control-label">Academic Qualification</label>
+                        <select required id="academicQualifications" name="academicQualifications" class="form-control"
+                            [(ngModel)]="student.academicQualifications" #academicQualificationsControl="ngModel"
+                            [class.border-danger]="(academicQualificationsControl.invalid && academicQualificationsControl.touched) || (academicQualificationsControl.invalid && isInvalid)">
+                            <option>B.Sc</option>
+                            <option>M.Sc</option>
+                            <option>Ph.D</option>
+                            <option>Others</option>
+                        </select>
                     </div>
+
                 </div>
             </div>
-            
-
 
         </div>
 
         <div class="card-footer">
-
-            <button class="btn btn-primary" type="submit">ADD</button>
+            <div>
+                <button class="btn btn-primary" type="submit"> ADD </button>
+            </div>
         </div>
-
     </div>
+
+
 </form>
 
-{{studentForm.value | json}}
+<!-- {{studentForm.value | json}} -->
+
+<!-- <div class="form-group col-sm" [class.has-error]="studentIdControl.invalid && studentIdControl.touched">
+    <label for="studentId" class="has-error control-label">Student Id</label>
+    <input required type="text" class="form-control" id="studentId" [(ngModel)]="student.studentId" name="studentId"
+        #studentIdControl="ngModel">
+    <span class="help-block has-error"
+        *ngIf="(studentIdControl.invalid && studentIdControl.touched) || (studentIdControl.invalid && isInvalid)">*Required</span>
+</div> -->
+
+<!-- placeholder="{{Math.floor(((Math.abs(date.getTime() - student.dateOfBirth.getTime())) / (1000 * 3600 * 24))/365.25)}}"> -->
