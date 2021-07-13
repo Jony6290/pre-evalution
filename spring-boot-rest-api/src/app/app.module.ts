@@ -14,6 +14,9 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon'
 import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'
+import { Ng2OrderModule } from 'ng2-order-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent],

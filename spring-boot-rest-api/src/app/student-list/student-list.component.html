@@ -1,17 +1,29 @@
 <h3 style="text-align: center;">student List</h3>
+<nav class="navbar">
+    <div class="row col-sm">
+        <div class="col-sm-7">
+            <input class="form-control" type="text" name="firstName" [(ngModel)]="firstName" (ngModelChange)="Search()"
+            placeholder="Enter first name to search">
+        </div>
+        <div class="col-sm-5">
+            <pagination-controls (pageChange)="page= $event"></pagination-controls>
+        </div>
+    </div>
+</nav>
+
 <table class="table table-striped">
     <thead>
         <tr>
             <th> Image</th>
-            <th> Id </th>
-            <th> Name</th>
+            <th (click)="sort('id')" style="width: 10%;"> Id &#8645; <i class="fa fa-sort"></i> </th>
+            <th (click)="sort('name')" style="width: 20%;"> Name &#8645; <i class="fa fa-sort"></i></th>
             <th> Email Id </th>
             <th> Contact No.</th>
             <th> Action </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let student of students | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalLength }" (dblclick)="studentDetails(student.id)">
+        <tr *ngFor = "let student of students | orderBy: key: reverse | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalLength }" (dblclick)="studentDetails(student.id)">
             <td><img  src="assets/pic.png" alt="image" style="height: 40px; width: 40px;"/></td>
             <td> {{student.studentId}} </td>
             <td> {{student.firstName + " " + student.lastName}}</td>
@@ -28,4 +40,4 @@
         </tr>
     </tbody>
 </table>
-<pagination-controls (pageChange)="page= $event"></pagination-controls>
+

@@ -16,6 +16,8 @@ export class StudentListComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
+  firstName: any;
+
   constructor(private studentService: StudentService, private router: Router) {}
 
   ngOnInit(): void {
@@ -50,5 +52,29 @@ export class StudentListComponent implements OnInit {
   openDialog(){
     console.log("open dialog called");
   }
+
+  Search(){
+    
+    if(this.firstName == ""){
+      this.ngOnInit();
+    }else{
+      this.students = this.students.filter(res =>{
+        console.log("search called: " + this.firstName);
+        console.log("search called: " + res.firstName);
+        return res.firstName.toLocaleLowerCase().match(this.firstName.toLocaleLowerCase());
+      })
+    }
+  }
+
+
+  //[Sorting started]
+  key!: string;
+  reverse: boolean = false;
+
+  sort(key: string){
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+  //[Sorting ended]
 
 }
