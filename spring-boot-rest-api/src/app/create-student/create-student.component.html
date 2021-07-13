@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group col-sm">
                         <label>Age</label>
-                        <input type="text" class="form-control" id="age" {{(date.getFullYear() - dateOfBirthControl.value.toString().substring(0, 4))}}="student.age" name="age" disabled
+                        <input type="text" class="form-control" id="age" [(ngModel)]="student.age" name="age" disabled
                         placeholder="{{(date.getFullYear() - dateOfBirthControl.value.toString().substring(0, 4))}} years">
                     </div>
                 </div>
